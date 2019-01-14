@@ -20,7 +20,7 @@ func (s *Saying) Hello(ctx context.Context, req *saying.Request, rsp *saying.Res
 
 func main() {
 	service := micro.NewService(
-		micro.Name("go.micro.srv.greeter"),
+		micro.Name("go-micro-greeter.irvi-test"),
 		micro.RegisterTTL(time.Second*30),
 		micro.RegisterInterval(time.Second*10),
 	)

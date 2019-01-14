@@ -50,7 +50,7 @@ func main() {
 	service.Init()
 
 	// setup Greeter Server Client
-	cl = saying.NewSayingService("go.micro.srv.greeter", client.DefaultClient)
+	cl = saying.NewSayingService("go-micro-greeter.irvi-test", client.DefaultClient)
 
 	// Create RESTful handler
 	say := new(Saying)
