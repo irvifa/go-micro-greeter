@@ -1,6 +1,7 @@
 # REST API
 
-This is an example of how to serve REST behind the API using go-restful
+This is an example of how to serve REST behind the API using go-restful.
+Make sure your service name is in the format of `<kubernetes-deployment-name>.<namespace-name>`
 
 ## Getting Started
 
@@ -11,6 +12,7 @@ consul agent -dev
 ### Run Greeter Service
 
 ```shell
+make telepresence-local-dev NAMESPACE="irvi-test" DEPLOYMENT="go-micro-greeter" PORT="8080"
 go run greeter/srv/main.go
 ```
 
