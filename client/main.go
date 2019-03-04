@@ -15,7 +15,7 @@ func main() {
 	service.Init()
 
 	greeter := proto.NewSayingService("greeter.irvi-test", service.Client())
-	rsp, err := greeter.Hello(context.TODO(), &proto.Request{Name: "John"})
+	rsp, err := greeter.SayHello(context.TODO(), &proto.Request{Name: "John"})
 	if err != nil {
 		fmt.Println(err)
 		return

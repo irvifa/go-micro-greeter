@@ -4,10 +4,9 @@ import (
 	"log"
 
 	"github.com/emicklei/go-restful"
-
-	 saying "github.com/irvifa/go-micro-greeter/proto/saying"
+	saying "github.com/irvifa/go-micro-greeter/proto/saying"
 	"github.com/micro/go-micro/client"
-	"github.com/micro/go-web"
+  "github.com/micro/go-web"
 
 	"context"
 )
@@ -26,11 +25,11 @@ func (s *Saying) Anything(req *restful.Request, rsp *restful.Response) {
 }
 
 func (s *Saying) WithName(req *restful.Request, rsp *restful.Response) {
-	log.Print("Received Saying.Hello API request")
+	log.Print("Received Saying.SayHello API request")
 
 	name := req.PathParameter("name")
 
-	response, err := cl.Hello(context.TODO(), &saying.Request{
+	response, err := cl.SayHello(context.TODO(), &saying.Request{
 		Name: name,
 	})
 
@@ -58,7 +57,7 @@ func main() {
 	wc := restful.NewContainer()
 	ws.Consumes(restful.MIME_JSON)
 	ws.Produces(restful.MIME_JSON)
-	ws.Path("/greeter")
+	ws.Path("/hello")
 	ws.Route(ws.GET("/").To(say.Anything))
 	ws.Route(ws.GET("/{name}").To(say.WithName))
 	wc.Add(ws)

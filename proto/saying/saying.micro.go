@@ -42,7 +42,7 @@ var _ server.Option
 // Client API for Saying service
 
 type SayingService interface {
-	Hello(ctx context.Context, in *Request, opts ...client.CallOption) (*Response, error)
+	SayHello(ctx context.Context, in *Request, opts ...client.CallOption) (*Response, error)
 }
 
 type sayingService struct {
@@ -63,8 +63,8 @@ func NewSayingService(name string, c client.Client) SayingService {
 	}
 }
 
-func (c *sayingService) Hello(ctx context.Context, in *Request, opts ...client.CallOption) (*Response, error) {
-	req := c.c.NewRequest(c.name, "Saying.Hello", in)
+func (c *sayingService) SayHello(ctx context.Context, in *Request, opts ...client.CallOption) (*Response, error) {
+	req := c.c.NewRequest(c.name, "Saying.SayHello", in)
 	out := new(Response)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
@@ -76,12 +76,12 @@ func (c *sayingService) Hello(ctx context.Context, in *Request, opts ...client.C
 // Server API for Saying service
 
 type SayingHandler interface {
-	Hello(context.Context, *Request, *Response) error
+	SayHello(context.Context, *Request, *Response) error
 }
 
 func RegisterSayingHandler(s server.Server, hdlr SayingHandler, opts ...server.HandlerOption) error {
 	type saying interface {
-		Hello(ctx context.Context, in *Request, out *Response) error
+		SayHello(ctx context.Context, in *Request, out *Response) error
 	}
 	type Saying struct {
 		saying
@@ -94,6 +94,6 @@ type sayingHandler struct {
 	SayingHandler
 }
 
-func (h *sayingHandler) Hello(ctx context.Context, in *Request, out *Response) error {
-	return h.SayingHandler.Hello(ctx, in, out)
+func (h *sayingHandler) SayHello(ctx context.Context, in *Request, out *Response) error {
+	return h.SayingHandler.SayHello(ctx, in, out)
 }

@@ -15,7 +15,7 @@ Example usage of top level service initialisation
 
 type Greeter struct{}
 
-func (g *Greeter) Hello(ctx context.Context, req *proto.Request, rsp *proto.Response) error {
+func (g *Greeter) SayHello(ctx context.Context, req *proto.Request, rsp *proto.Response) error {
 	rsp.Msg = "Hello " + req.Name
 	return nil
 }
